@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/itsjamie/gin-cors"
-	"github.com/timsly/kameniarka/models"
+	"github.com/timsly/kameniarka-contact/models"
 )
 
 func main() {
