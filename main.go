@@ -2,10 +2,12 @@ package main
 
 import (
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/itsjamie/gin-cors"
+	"github.com/timsly/gin-recaptcha"
 	"github.com/timsly/kameniarka-contact/models"
 )
 
@@ -20,6 +22,10 @@ func main() {
 		MaxAge:          50 * time.Second,
 		Credentials:     true,
 		ValidateHeaders: false,
+	}))
+
+	r.Use(recaptcha.Middleware(recaptcha.Config{
+		Secret: os.Getenv("RECAPTCHA_SECRET"),
 	}))
 
 	r.GET("/contact", func(c *gin.Context) {
