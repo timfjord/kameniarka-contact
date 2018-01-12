@@ -1,10 +1,7 @@
 {
-	"ImportPath": "github.com/timsly/kameniarka",
-	"GoVersion": "go1.5",
-	"GodepVersion": "v72",
-	"Packages": [
-		"./..."
-	],
+	"ImportPath": "github.com/timsly/kameniarka-contact",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v79",
 	"Deps": [
 		{
 			"ImportPath": "github.com/gin-gonic/gin",
@@ -27,6 +24,7 @@
 		},
 		{
 			"ImportPath": "github.com/itsjamie/gin-cors",
+			"Comment": "1.0.0",
 			"Rev": "97b4a9da79331dfa2b6d35f4cdd1e50f5148859c"
 		},
 		{
