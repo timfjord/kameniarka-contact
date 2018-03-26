@@ -24,9 +24,9 @@ func main() {
 		ValidateHeaders: false,
 	}))
 
-	r.Use(recaptcha.Middleware(recaptcha.Config{
-		Secret: os.Getenv("RECAPTCHA_SECRET"),
-	}))
+	// r.Use(recaptcha.Middleware(recaptcha.Config{
+	// 	Secret: os.Getenv("RECAPTCHA_SECRET"),
+	// }))
 
 	r.GET("/contact", func(c *gin.Context) {
 		c.Writer.WriteHeader(http.StatusOK)
