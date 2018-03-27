@@ -47,6 +47,11 @@
 			"Rev": "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c"
 		},
 		{
+			"ImportPath": "github.com/rvelhote/go-recaptcha",
+			"Comment": "1.0",
+			"Rev": "e143c6ea64e5339edbfe5422b4b87d786aad81d6"
+		},
+		{
 			"ImportPath": "github.com/sendgrid/sendgrid-go",
 			"Comment": "v2.0.0-22-g6ea8b2b",
 			"Rev": "6ea8b2b2d54b2e54efcf8668867289a1838d96fd"
@@ -55,10 +60,6 @@
 			"ImportPath": "github.com/sendgrid/smtpapi-go",
 			"Comment": "v0.4.0-7-gb88787c",
 			"Rev": "b88787cc8801ef961d7daef0bcb79ae3f50bfd52"
-		},
-		{
-			"ImportPath": "github.com/timsly/gin-recaptcha",
-			"Rev": "7845d5519ac71bae1a70ec8a4ead5fe76ec08411"
 		},
 		{
 			"ImportPath": "github.com/ugorji/go/codec",
