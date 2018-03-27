@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/haisum/recaptcha"
 	"github.com/itsjamie/gin-cors"
-	"github.com/rvelhote/go-recaptcha"
 	"github.com/timsly/kameniarka-contact/models"
 )
 
@@ -29,8 +29,8 @@ func main() {
 	})
 
 	r.POST("/contact", func(c *gin.Context) {
-		instance := recaptcha.Recaptcha{ PrivateKey: os.Getenv("RECAPTCHA_SECRET") }
-		if _, e := instance.Verify(c.Request.FormValue("g-recaptcha-response"), c.ClientIP()); e == nil {
+		re := recaptcha.R{ Secret: os.Getenv("RECAPTCHA_SECRET") }
+		if re.VerifyResponse(c.Request.FormValue("g-recaptcha-response")) {
 			var msg models.Message
 			if c.Bind(&msg) == nil {
 				if e := msg.Deliver(); e == nil {
@@ -42,7 +42,7 @@ func main() {
 				c.Writer.WriteHeader(http.StatusBadRequest)
 			}
 		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Captch error"})
+			c.JSON(http.StatusBadRequest, gin.H{"error": re.LastError()})
 		}
 	})
 

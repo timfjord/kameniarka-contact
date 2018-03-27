@@ -32,6 +32,10 @@
 			"Rev": "9e6977f30c91c78396e719e164e57f9287fff42c"
 		},
 		{
+			"ImportPath": "github.com/haisum/recaptcha",
+			"Rev": "7d3b8053900e7a0f549a11e800649a5fa950700f"
+		},
+		{
 			"ImportPath": "github.com/itsjamie/gin-cors",
 			"Comment": "1.0.0",
 			"Rev": "97b4a9da79331dfa2b6d35f4cdd1e50f5148859c"
@@ -45,11 +49,6 @@
 			"ImportPath": "github.com/mattn/go-isatty",
 			"Comment": "v0.0.3-7-g6ca4dbf",
 			"Rev": "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c"
-		},
-		{
-			"ImportPath": "github.com/rvelhote/go-recaptcha",
-			"Comment": "1.0",
-			"Rev": "e143c6ea64e5339edbfe5422b4b87d786aad81d6"
 		},
 		{
 			"ImportPath": "github.com/sendgrid/sendgrid-go",
