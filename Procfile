@@ -1,1 +1,1 @@
-web: kameniarka
+web: kameniarka-contact

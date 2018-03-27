@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/haisum/recaptcha"
 	"github.com/itsjamie/gin-cors"
-	"github.com/timsly/gin-recaptcha"
 	"github.com/timsly/kameniarka-contact/models"
 )
 
@@ -24,24 +24,25 @@ func main() {
 		ValidateHeaders: false,
 	}))
 
-	r.Use(recaptcha.Middleware(recaptcha.Config{
-		Secret: os.Getenv("RECAPTCHA_SECRET"),
-	}))
-
 	r.GET("/contact", func(c *gin.Context) {
 		c.Writer.WriteHeader(http.StatusOK)
 	})
 
 	r.POST("/contact", func(c *gin.Context) {
-		var msg models.Message
-		if c.Bind(&msg) == nil {
-			if e := msg.Deliver(); e == nil {
-				c.Writer.WriteHeader(http.StatusCreated)
+		re := recaptcha.R{ Secret: os.Getenv("RECAPTCHA_SECRET") }
+		if re.VerifyResponse(c.Request.FormValue("g-recaptcha-response")) {
+			var msg models.Message
+			if c.Bind(&msg) == nil {
+				if e := msg.Deliver(); e == nil {
+					c.Writer.WriteHeader(http.StatusCreated)
+				} else {
+					c.JSON(http.StatusBadRequest, gin.H{"error": e.Error()})
+				}
 			} else {
-				c.JSON(http.StatusBadRequest, gin.H{"error": e.Error()})
+				c.Writer.WriteHeader(http.StatusBadRequest)
 			}
 		} else {
-			c.Writer.WriteHeader(http.StatusBadRequest)
+			c.JSON(http.StatusBadRequest, gin.H{"error": re.LastError()})
 		}
 	})
 

@@ -32,6 +32,10 @@
 			"Rev": "9e6977f30c91c78396e719e164e57f9287fff42c"
 		},
 		{
+			"ImportPath": "github.com/haisum/recaptcha",
+			"Rev": "7d3b8053900e7a0f549a11e800649a5fa950700f"
+		},
+		{
 			"ImportPath": "github.com/itsjamie/gin-cors",
 			"Comment": "1.0.0",
 			"Rev": "97b4a9da79331dfa2b6d35f4cdd1e50f5148859c"
@@ -55,10 +59,6 @@
 			"ImportPath": "github.com/sendgrid/smtpapi-go",
 			"Comment": "v0.4.0-7-gb88787c",
 			"Rev": "b88787cc8801ef961d7daef0bcb79ae3f50bfd52"
-		},
-		{
-			"ImportPath": "github.com/timsly/gin-recaptcha",
-			"Rev": "7845d5519ac71bae1a70ec8a4ead5fe76ec08411"
 		},
 		{
 			"ImportPath": "github.com/ugorji/go/codec",
