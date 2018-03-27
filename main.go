@@ -14,6 +14,8 @@ import (
 func main() {
 	r := gin.New()
 
+	re := recaptcha.R{ Secret: os.Getenv("RECAPTCHA_SECRET") }
+
 	r.Use(cors.Middleware(cors.Config{
 		Origins:         "*",
 		Methods:         "GET, PUT, POST, DELETE",
@@ -29,7 +31,6 @@ func main() {
 	})
 
 	r.POST("/contact", func(c *gin.Context) {
-		re := recaptcha.R{ Secret: os.Getenv("RECAPTCHA_SECRET") }
 		if re.VerifyResponse(c.Request.FormValue("g-recaptcha-response")) {
 			var msg models.Message
 			if c.Bind(&msg) == nil {
