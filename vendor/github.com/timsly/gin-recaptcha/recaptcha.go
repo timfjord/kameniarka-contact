@@ -6,6 +6,7 @@ import (
 	"errors"
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
@@ -32,6 +33,7 @@ type Config struct {
 func Middleware(config Config) gin.HandlerFunc {
 	// Create the Middleware function
 	return func(c *gin.Context) {
+		log.Println("rc check")
 		challenge := c.Request.FormValue("g-recaptcha-response")
 		ip := c.ClientIP()
 
