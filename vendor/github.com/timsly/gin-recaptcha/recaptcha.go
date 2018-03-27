@@ -33,7 +33,7 @@ type Config struct {
 func Middleware(config Config) gin.HandlerFunc {
 	// Create the Middleware function
 	return func(c *gin.Context) {
-		log.Println("rc middleware")
+		log.Println("rc check")
 		challenge := c.Request.FormValue("g-recaptcha-response")
 		ip := c.ClientIP()
 
