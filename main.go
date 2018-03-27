@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 	"time"
@@ -14,10 +15,9 @@ import (
 func main() {
 	r := gin.New()
 
-	r.Use(recaptcha.Middleware(recaptcha.Config{
-		Secret: os.Getenv("RECAPTCHA_SECRET"),
-	}))
+	log.Println("start")
 
+	log.Println("cors use")
 	r.Use(cors.Middleware(cors.Config{
 		Origins:         "*",
 		Methods:         "GET, PUT, POST, DELETE",
@@ -28,11 +28,18 @@ func main() {
 		ValidateHeaders: false,
 	}))
 
+	log.Println("rc use")
+	r.Use(recaptcha.Middleware(recaptcha.Config{
+		Secret: os.Getenv("RECAPTCHA_SECRET"),
+	}))
+
 	r.GET("/contact", func(c *gin.Context) {
+		log.Println("ping")
 		c.Writer.WriteHeader(http.StatusOK)
 	})
 
 	r.POST("/contact", func(c *gin.Context) {
+		log.Println("post")
 		var msg models.Message
 		if c.Bind(&msg) == nil {
 			if e := msg.Deliver(); e == nil {
