@@ -42,7 +42,7 @@ func main() {
 				c.Writer.WriteHeader(http.StatusBadRequest)
 			}
 		} else {
-			c.JSON(http.StatusBadRequest, gin.H{"error": e})
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Captch error"})
 		}
 	})
 
