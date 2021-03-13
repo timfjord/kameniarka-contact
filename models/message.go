@@ -48,7 +48,7 @@ func (msg *Message) Deliver() error {
 	mail := sendgrid.NewMail()
 	mail.AddTo(email)
 	mail.SetSubject(fmt.Sprintf("Нове повідомлення з сайту від %s", time.Now().Format("02.01.2006")))
-	mail.SetFrom("no-reply@kameniarka.cv.ua")
+	mail.SetFrom("no-reply@kameniarka.com")
 	mail.SetHTML(msg.format())
 
 	return sg.Send(mail)
