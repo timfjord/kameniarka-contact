@@ -8,7 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/haisum/recaptcha"
 	"github.com/itsjamie/gin-cors"
-	"github.com/timsly/kameniarka-contact/models"
+	"github.com/timfjord/kameniarka-contact/models"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 		RequestHeaders:  "Origin, Authorization, Content-Type",
 		ExposedHeaders:  "",
 		MaxAge:          50 * time.Second,
-		Credentials:     true,
+		// Credentials:     true,
 		ValidateHeaders: false,
 	}))
 

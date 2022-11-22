@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/sendgrid/sendgrid-go"
+	"github.com/sendgrid/sendgrid-go/helpers/mail"
 )
 
 // Message struct
@@ -44,12 +45,13 @@ func (msg *Message) Deliver() error {
 		return errors.New("CONTACT_EMAIL is missing")
 	}
 
-	sg := sendgrid.NewSendGridClientWithApiKey(apiKey)
-	mail := sendgrid.NewMail()
-	mail.AddTo(email)
-	mail.SetSubject(fmt.Sprintf("Нове повідомлення з сайту від %s", time.Now().Format("02.01.2006")))
-	mail.SetFrom("no-reply@kameniarka.com")
-	mail.SetHTML(msg.format())
+	from := mail.NewEmail("Kameniarka Bot", "no-reply@kameniarka.com")
+	subject := fmt.Sprintf("Нове повідомлення з сайту від %s", time.Now().Format("02.01.2006"))
+	to := mail.NewEmail("", email)
+	message := mail.NewSingleEmail(from, subject, to, "", msg.format())
 
-	return sg.Send(mail)
+	client := sendgrid.NewSendClient(apiKey)
+	_, err := client.Send(message)
+
+	return err
 }
