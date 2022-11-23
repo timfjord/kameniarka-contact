@@ -45,10 +45,13 @@ func (msg *Message) Deliver() error {
 		return errors.New("CONTACT_EMAIL is missing")
 	}
 
-	from := mail.NewEmail("Kameniarka Bot", "no-reply@kameniarka.com")
 	subject := fmt.Sprintf("Нове повідомлення з сайту від %s", time.Now().Format("02.01.2006"))
+	from := mail.NewEmail("Kameniarka Bot", "no-reply@kameniarka.com")
 	to := mail.NewEmail("", email)
+	replyToEmail := mail.NewEmail(msg.Name, msg.Email)
+
 	message := mail.NewSingleEmail(from, subject, to, "", msg.format())
+	message.SetReplyTo(replyToEmail)
 
 	client := sendgrid.NewSendClient(apiKey)
 	_, err := client.Send(message)
